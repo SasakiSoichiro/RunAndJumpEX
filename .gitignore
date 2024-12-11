@@ -73,3 +73,5 @@ crashlytics-build.properties
 /RunAndJump/Library
 /RunAndJump/Logs
 /RunAndJump/UserSettings
+/RunAndJump/obj/Debug
+/RunAndJump/Temp
