@@ -12,7 +12,8 @@ public class jamp : MonoBehaviour
     private PlayerContoroller controller;
     private float startPos;
     private float groundPos;
-    private float jumpDistance;
+    public float jumpDistance;
+
 
 
     void Start()
@@ -57,4 +58,5 @@ public class jamp : MonoBehaviour
             Debug.Log(jumpDistance);
         }
     }
+
 }
