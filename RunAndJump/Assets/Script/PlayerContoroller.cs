@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -13,15 +14,14 @@ public class PlayerContoroller : MonoBehaviour
 	public float airVelocity = 8.0f;
 	public float gravity = 40.0f;
 	public float maxVelocityChange = 10.0f;
-	public float jumpHeight = 4.0f;
-	public float maxFallSpeed = 20.0f;
+	public float jumpHeight = 10.0f;
+	public float maxFallSpeed = 50.0f;
 	public float rotateSpeed = 25f; //Speed the player rotate
 	public Vector3 moveDir;
 	public GameObject cam;
 	private Rigidbody rb;
-	public float MaxSpeed = 5.0f;
+	public float MaxSpeed = 50.0f;
 	public float addSpeed = 0.33f;
-	public float deadSpeed = 0.25f;
 	private float countSpeed = 0.0f;
 	public bool isGrounded = true;
 
@@ -32,7 +32,7 @@ public class PlayerContoroller : MonoBehaviour
 	private bool wasStuned = false; //If player was stunned before get stunned another time
 	private float pushForce;
 	private Vector3 pushDir;
-
+	private bool bJump = false;
 	public Vector3 checkPoint;
 	private bool slide = false;
 
@@ -100,11 +100,14 @@ public class PlayerContoroller : MonoBehaviour
 					rb.AddForce(moveDir * 0.15f, ForceMode.VelocityChange);
 					//Debug.Log(rb.velocity.magnitude);
 				}
-
-				// Jump
-				if (IsGrounded() && Input.GetButton("Jump"))
+				if (bJump == false)
 				{
-					rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+					// Jump
+					if (IsGrounded() && Input.GetButton("Jump"))
+					{
+						rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+						bJump = true;
+					}
 				}
 			}
 			else
@@ -141,12 +144,7 @@ public class PlayerContoroller : MonoBehaviour
 			countSpeed = Mathf.Min(
 				countSpeed + addSpeed, MaxSpeed);
 		}
-		else
-		{
-			countSpeed = Mathf.Max(
-				countSpeed - deadSpeed * Time.deltaTime,
-				0);
-		}
+		
 		//float h = Input.GetAxis("Horizontal");
 		//float v = 0.0f;//Input.GetAxis("Vertical");
 
@@ -156,10 +154,18 @@ public class PlayerContoroller : MonoBehaviour
 		float totalSpeed = speed + countSpeed;
 		transform.Translate(Vector3.right * totalSpeed * Time.deltaTime);
 		// スペースキーでジャンプ
-		if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+		if (bJump == false)
 		{
-			rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-			isGrounded = false;
+			if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+			{
+				rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+				isGrounded = false;
+				bJump = true;
+			}
+		}
+		if (transform.position.y < -20)
+		{
+			SceneManager.LoadScene("a");
 		}
 		//RaycastHit hit;
 		//if (Physics.Raycast(transform.position, -Vector3.up, out hit, distToGround + 0.1f))

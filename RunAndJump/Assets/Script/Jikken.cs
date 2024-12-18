@@ -13,13 +13,13 @@ public class Jikken : MonoBehaviour
 	public float airVelocity = 8.0f;
 	public float gravity = 40.0f;
 	public float maxVelocityChange = 10.0f;
-	public float jumpHeight = 4.0f;
+	public float jumpHeight = 10.0f;
 	public float maxFallSpeed = 20.0f;
 	public float rotateSpeed = 25f; //Speed the player rotate
 	private Vector3 moveDir;
 	public GameObject cam;
 	private Rigidbody rb;
-	public float MaxSpeed = 5.0f;
+	public float MaxSpeed = 50.0f;
 	public float addSpeed = 0.33f;
 	public float deadSpeed = 0.25f;
 	private float countSpeed = 0.0f;
@@ -100,11 +100,14 @@ public class Jikken : MonoBehaviour
 					rb.AddForce(moveDir * 0.15f, ForceMode.VelocityChange);
 					//Debug.Log(rb.velocity.magnitude);
 				}
-
-				// Jump
-				if (IsGrounded() && Input.GetButton("Jump"))
+				if (bJump == false)
 				{
-					rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+					// Jump
+					if (IsGrounded() && Input.GetButton("Jump"))
+					{
+						rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+						bJump = true;
+					}
 				}
 			}
 			else
