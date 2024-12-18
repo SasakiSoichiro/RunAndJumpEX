@@ -28,7 +28,7 @@ public class PlayerContoroller : MonoBehaviour
 	private float distToGround;
 
 	private bool canMove = true; //If player is not hitted
-	private bool isStuned = false;
+	public bool isStuned = false;
 	private bool wasStuned = false; //If player was stunned before get stunned another time
 	private float pushForce;
 	private Vector3 pushDir;

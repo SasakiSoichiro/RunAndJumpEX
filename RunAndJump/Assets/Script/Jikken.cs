@@ -24,7 +24,7 @@ public class Jikken : MonoBehaviour
 	public float deadSpeed = 0.25f;
 	private float countSpeed = 0.0f;
 	private bool isGrounded = true;
-
+	private bool bJump = false;
 	private float distToGround;
 
 	private bool canMove = true; //If player is not hitted
@@ -136,17 +136,13 @@ public class Jikken : MonoBehaviour
 
 	private void Update()//更新処理
 	{
-		if(Input.GetKeyDown(KeyCode.Return))
-		{
-			countSpeed = Mathf.Min(
-				countSpeed + addSpeed, MaxSpeed);
-        }
-		else
-        {
-			countSpeed = Mathf.Max(
-				countSpeed - deadSpeed * Time.deltaTime,
-				0);
-        }
+		
+			if (Input.GetKeyDown(KeyCode.Return))
+			{
+				countSpeed = Mathf.Min(
+					countSpeed + addSpeed, MaxSpeed);
+			}
+		
 		//float h = Input.GetAxis("Horizontal");
 		//float v = 0.0f;//Input.GetAxis("Vertical");
 
@@ -155,11 +151,15 @@ public class Jikken : MonoBehaviour
 		//moveDir = (v2 + h2).normalized; //Global position to which I want to move in magnitude 1
 		float totalSpeed = speed + countSpeed;
 		transform.Translate(Vector3.right * totalSpeed * Time.deltaTime);
-		// スペースキーでジャンプ
-		if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+		if (bJump == false)
 		{
-			rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-			isGrounded = false;
+			// スペースキーでジャンプ
+			if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+			{
+				rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+				isGrounded = false;
+				bJump = true;
+			}
 		}
 		//RaycastHit hit;
 		//if (Physics.Raycast(transform.position, -Vector3.up, out hit, distToGround + 0.1f))
