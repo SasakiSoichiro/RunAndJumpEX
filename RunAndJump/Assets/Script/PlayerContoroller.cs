@@ -23,7 +23,7 @@ public class PlayerContoroller : MonoBehaviour
 	public float addSpeed = 0.33f;
 	public float deadSpeed = 0.25f;
 	private float countSpeed = 0.0f;
-	private bool isGrounded = true;
+	public bool isGrounded = true;
 
 	private float distToGround;
 
