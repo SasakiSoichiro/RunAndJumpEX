@@ -30,7 +30,7 @@ public class jamp : MonoBehaviour
         Debug.DrawRay(rayPosition, Vector3.down * rayDistance, Color.red);
 
         //CharacterControllerを使ったジャンプ移動
-        if (controller.IsGrounded)
+        if (controller.isGrounded)
         {
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
@@ -43,7 +43,7 @@ public class jamp : MonoBehaviour
         }
 
         moveDirection.y = moveDirection.y - (gravity * Time.deltaTime);
-        controller.Speed(moveDirection * Time.deltaTime);
+        controller.moveDir = (moveDirection * Time.deltaTime);
 
         //ジャンプした距離の計算
         if (isFloor)
@@ -56,10 +56,5 @@ public class jamp : MonoBehaviour
             jumpDistance = groundPos - startPos;
             Debug.Log(jumpDistance);
         }
-    }
-
-    public bool IsPlayerGrounded
-    {
-        get { return IsGrounded(); }
     }
 }

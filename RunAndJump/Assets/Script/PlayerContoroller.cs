@@ -16,7 +16,7 @@ public class PlayerContoroller : MonoBehaviour
 	public float jumpHeight = 4.0f;
 	public float maxFallSpeed = 20.0f;
 	public float rotateSpeed = 25f; //Speed the player rotate
-	private Vector3 moveDir;
+	public Vector3 moveDir;
 	public GameObject cam;
 	private Rigidbody rb;
 	public float MaxSpeed = 5.0f;
@@ -223,4 +223,14 @@ public class PlayerContoroller : MonoBehaviour
 			canMove = true;
 		}
 	}
+
+	public float GetSpeed()
+    {
+		return speed;
+    }
+
+	public void SetSpeed(float newSpeed)
+    {
+		speed = newSpeed;
+    }
 }

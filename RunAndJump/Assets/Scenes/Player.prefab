@@ -101,6 +101,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5231153522991478139, guid: 4eb8cf8ca2dcea74ea2b439ea986aea0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5381830578618599566}
+    - targetCorrespondingSourceObject: {fileID: 5231153522991478139, guid: 4eb8cf8ca2dcea74ea2b439ea986aea0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2588635453909230412}
+    - targetCorrespondingSourceObject: {fileID: 5231153522991478139, guid: 4eb8cf8ca2dcea74ea2b439ea986aea0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 250257778374109805}
   m_SourcePrefab: {fileID: 100100000, guid: 4eb8cf8ca2dcea74ea2b439ea986aea0, type: 3}
 --- !u!1 &1736811423138119406 stripped
 GameObject:
@@ -130,6 +136,45 @@ MonoBehaviour:
   MaxSpeed: 15
   addSpeed: 1
   deadSpeed: 0.25
+  checkPoint: {x: 0, y: 0, z: 0}
+--- !u!114 &2588635453909230412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736811423138119406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb2fface4aa56b4f9ae0b05f698e00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &250257778374109805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736811423138119406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad820f594df152343a6e4a794d51f7b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  airVelocity: 8
+  gravity: 40
+  maxVelocityChange: 10
+  jumpHeight: 4
+  maxFallSpeed: 20
+  rotateSpeed: 25
+  moveDir: {x: 0, y: 0, z: 0}
+  cam: {fileID: 0}
+  MaxSpeed: 5
+  addSpeed: 0.33
+  deadSpeed: 0.25
+  isGrounded: 1
+  isStuned: 0
   checkPoint: {x: 0, y: 0, z: 0}
 --- !u!4 &2761063898949156370 stripped
 Transform:
